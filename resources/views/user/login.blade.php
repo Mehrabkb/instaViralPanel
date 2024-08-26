@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ورود</title>
+    {!! htmlScriptTagJsApi() !!}
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('panel') }}/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -31,6 +31,7 @@
             <p class="login-box-msg">اطلاعات کاربری</p>
 
             <form action="{{ asset('panel') }}/index3.html" method="post">
+                @csrf
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="نام کاربری" autocomplete="off" >
                     <div class="input-group-append">
@@ -40,13 +41,22 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="رمز عبور">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
                 </div>
+                {!! htmlFormSnippet([
+    "theme" => "light",
+    "size" => "normal",
+    "tabindex" => "3",
+    "language" => "fa",
+    "callback" => "callbackFunction",
+    "expired-callback" => "expiredCallbackFunction",
+    "error-callback" => "errorCallbackFunction",
+]) !!}
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-12">
@@ -57,7 +67,7 @@
             </form>
 
             <!-- /.social-auth-links -->
-            
+
         </div>
         <!-- /.login-card-body -->
     </div>
