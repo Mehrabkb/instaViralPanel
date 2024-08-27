@@ -21,6 +21,10 @@ Route::prefix('admin')->group(function () {
 
 });
 Route::prefix('user')->group(function () {
-    Route::get('/login' , [UserController::class , 'login'])->name('login');
-    Route::post('/login' , [UserController::class , 'login'])->name('login');
+    Route::get('/login' , [UserController::class , 'login'])->name('user.login');
+    Route::post('/login' , [UserController::class , 'login'])->name('user.login');
+    Route::get('/logout' , [UserController::class , 'logout'])->name('user.logout');
+});
+Route::prefix('panel')->group(function () {
+    Route::get('/home' , [\App\Http\Controllers\PanelController::class , 'home'])->name('panel.home');
 });

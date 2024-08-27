@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ asset('panel') }}/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="{{ asset('plugins/alertify/css/themes/bootstrap.rtl.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/alertify/css/alertify.rtl.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -30,10 +32,10 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">اطلاعات کاربری</p>
 
-            <form action="{{ asset('panel') }}/index3.html" method="post">
+            <form action="{{ route('user.login') }}" method="post">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="نام کاربری" autocomplete="off" >
+                    <input type="text" class="form-control" placeholder="نام کاربری" name="username" autocomplete="off" >
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -41,7 +43,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="رمز عبور">
+                    <input type="password" class="form-control" name="password" placeholder="رمز عبور">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -77,6 +79,17 @@
 <script src="{{ asset('panel') }}/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('panel') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('plugins/alertify/alertify.min.js') }}"></script>
 
+@if($errors->any())
+    <script>
+        alertify.error('{{ $errors->first() }}');
+    </script>
+@endif
+@if(session('success'))
+    <script>
+        alertify.success('{{ session('success') }}');
+    </script>
+@endif
 </body>
 </html>
