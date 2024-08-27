@@ -80,7 +80,7 @@ return [
      * @since v3.6.0
      *
      */
-    'default_language'             => null,
+    'default_language'             => 'fa',
 
     /**
      *

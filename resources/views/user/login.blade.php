@@ -52,7 +52,6 @@
     "theme" => "light",
     "size" => "normal",
     "tabindex" => "3",
-    "language" => "fa",
     "callback" => "callbackFunction",
     "expired-callback" => "expiredCallbackFunction",
     "error-callback" => "errorCallbackFunction",
