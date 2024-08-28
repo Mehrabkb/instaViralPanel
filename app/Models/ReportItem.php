@@ -11,5 +11,5 @@ class ReportItem extends Model
     protected $table = 'report_items';
     protected $primaryKey = 'report_item_id';
     public $timestamps = false;
-    protected $fillable = ['report_id' , 'social_name' , 'social_link' , 'social_image' , 'social_follower_count' , 'social_date_registered' , 'social_story_viewed'];
+    protected $fillable = ['report_id' , 'page_id' ,'social_date_registered' , 'social_story_viewed' , 'social_story_excel_file' , 'social_story_video_file'];
 }

@@ -1,5 +1,8 @@
 @extends('panel.master')
 @section('title' , 'ثبت گزارش')
+@section('styles')
+    <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css">
+@endsection
 @section('main')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -57,20 +60,70 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>فایل زیپ کمپین</label>
+                                        <label>فایل زیپ کمپین (اختیاری)</label>
                                         <input class="form-control" type="file"  name="report-zip-file">
                                     </div>
                                     <div class="form-group">
-                                        <label>فایل اکسل کمپین</label>
+                                        <label> فایل اکسل کمپین (اختیاری)</label>
                                         <input class="form-control" type="file"  name="report-excel-file">
                                     </div>
                                     <div class="form-group">
-                                        <label>نوع کمپین</label>
+                                        <label>نوع کمپین (اختیاری)</label>
                                         <input class="form-control" type="text" placeholder="مثل پست تو استوری" name="report-type">
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
+                                <hr>
+                                <hr>
+                                <hr>
+                                <h3 class="bg-primary py-2 px-3"> آیتم های کمپین
 
+                                </h3>
+                                <div class="form-items">
+                                    <div class="item w-75 mx-auto">
+                                        <div class="card card-dark">
+                                            <div class="card-header">
+                                                <h3 class="card-title float-left">آیتم</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label> نام پیج</label>
+                                                    <input class="form-control" type="text" placeholder="نام پیج" name="social-name[]">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> لینک پیج</label>
+                                                    <input class="form-control" type="text" placeholder="لینک پیج" name="social-link[]">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>عکس پیج</label>
+                                                    <input class="form-control" type="file"  name="social-image[]">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> تعداد فالور</label>
+                                                    <input class="form-control" type="number" placeholder=" تعداد فالور" name="social-follower-count[]">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label> ساعت قرارگیری</label>
+                                                    <input class="form-control social-date-registered"  type="text" placeholder="تاریخ">
+                                                    <input type="hidden" id="social-date-registered" name="social-date-registered[]" >
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>ویو استوری</label>
+                                                    <input class="form-control" type="number" placeholder="ویو استوری" name="social-story-view[]">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>گزارش اکسل</label>
+                                                    <input class="form-control" type="file"  name="social-story-excel-file[]">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>گزارش ویدیو</label>
+                                                    <input class="form-control" type="file"  name="social-story-video-file[]">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success add-item mx-auto d-block" type="button"> افزودن آیتم</button>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">ثبت</button>
                                 </div>
@@ -291,4 +344,23 @@
         <!-- /.content -->
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="https://unpkg.com/persian-date@1.1.0/dist/persian-date.min.js"></script>
+    <script src="https://unpkg.com/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
+    <script>
+        $('.social-date-registered').persianDatepicker({
+            observer: true,
+            autoClose: true,
+            altField: '#social-date-registered',
+            timePicker: {
+                enabled: true,
+                meridiem: {
+                    enabled: true
+                }
+            }
+
+        })
+    </script>
+    <script src="{{ asset('panel/script/pages/reportAdd.js') }}"></script>
 @endsection
