@@ -27,7 +27,7 @@ class UserController extends Controller
                     if($this->userRepository->checkUserPassword($username , $password)){
                         $user = $this->userRepository->getUserByUsername($username);
                         Auth::login($user);
-                        return redirect('panel.home');
+                        return redirect()->route('panel.home');
                     }else{
                         return redirect()->back()->withErrors('رمز عبور را صحیح وارد کنید');
                     }

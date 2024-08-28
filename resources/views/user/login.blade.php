@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="{{ asset('plugins/alertify/css/themes/bootstrap.rtl.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/alertify/css/alertify.rtl.css') }}" rel="stylesheet">
+    <link href="{{ asset('fonts/css/style.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -35,7 +36,7 @@
             <form action="{{ route('user.login') }}" method="post">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="نام کاربری" name="username" autocomplete="off" >
+                    <input type="text" class="form-control" placeholder="نام کاربری" name="username" autocomplete="off" autofocus>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
