@@ -59,4 +59,11 @@ class PanelController extends Controller
                 }
         }
     }
+    public function reportAdd(Request $request){
+        switch ($request->method()){
+            case 'GET':
+                $customers = $this->customerRepository->allCustomers();
+                return view('panel.report.add' , compact('customers'));
+        }
+    }
 }

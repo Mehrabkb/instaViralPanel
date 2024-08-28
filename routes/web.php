@@ -29,4 +29,5 @@ Route::prefix('panel')->group(function () {
     Route::get('/home' , [\App\Http\Controllers\PanelController::class , 'home'])->name('panel.home');
     Route::get('/customer' , [\App\Http\Controllers\PanelController::class , 'customer'])->name('panel.customer');
     Route::post('/customer/add' , [\App\Http\Controllers\PanelController::class , 'customerAdd'])->name('panel.customer.add');
+    Route::get('/report/add' , [\App\Http\Controllers\PanelController::class , 'reportAdd'])->name('panel.report.add');
 });

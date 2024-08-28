@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id('report_id');
             $table->unsignedBigInteger('customer_id');
             $table->string('report_name' , 255);
-            $table->string('report_description' , 255)->nullable();
+            $table->boolean('report_status')->default(false);
+            $table->string('report_excel_file' , 255)->nullable();
+            $table->string('report_zip_file' , 255)->nullable();
+            $table->string('report_type' , 255)->nullable();
         });
     }
 
