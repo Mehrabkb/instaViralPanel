@@ -23,7 +23,8 @@ class PanelController extends Controller
     public function customer(Request $request){
         switch ($request->method()){
             case 'GET':
-                return view('panel.customer');
+                $customers = $this->customerRepository->allCustomers();
+                return view('panel.customer' , compact('customers'));
         }
     }
     public function customerAdd(Request $request){

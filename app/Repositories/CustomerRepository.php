@@ -10,6 +10,8 @@ class CustomerRepository implements CustomerRepositoryInterface{
     {
         // TODO: Implement addCustomer() method.
         return Customer::create($customerData);
-
+    }
+    public function allCustomers(){
+        return Customer::all();
     }
 }

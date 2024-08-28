@@ -6,4 +6,5 @@ use App\Models\Customer;
 
 interface CustomerRepositoryInterface{
     public function createCustomer(array $customerData);
+    public function allCustomers();
 }

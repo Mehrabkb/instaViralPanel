@@ -1,5 +1,8 @@
 @extends('panel.master')
 @section('title', 'مشتریان')
+@section('styles')
+    <link href="https://cdn.datatables.net/v/ju/jq-3.7.0/dt-2.1.4/datatables.min.css" rel="stylesheet">
+@endsection
 @section('main')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -265,6 +268,33 @@
 {{--                        </div>--}}
 {{--                        <!-- /.card -->--}}
 
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card card-dark">
+                            <div class="card-header">
+                                <h3 class="card-title w-100 text-left">اطلاعات مشتریان</h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="customers-table" class="cell-border display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>نام و نام خانوادگی مشتری</th>
+                                            <th>نام تجاری مشتری</th>
+                                            <th>نام پیج مشتری</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($customers as $customer)
+                                        <tr>
+                                            <td>{{ $customer->customer_name }}</td>
+                                            <td>{{ $customer->customer_brand }}</td>
+                                            <td>{{ $customer->customer_instagram_page }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <!--/.col (left) -->
                     <!-- right column -->
@@ -1156,4 +1186,17 @@
         <!-- /.content -->
     </div>
 
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.datatables.net/v/ju/jq-3.7.0/dt-2.1.4/datatables.min.js"></script>
+    <script>
+        $('#customers-table').dataTable({
+            "language": {
+                "search": "جستجو:",
+                "lengthMenu": "نمایش _MENU_",
+                "info": "نمایش _START_ تا _END_ از _TOTAL_ ورودی"
+            }
+        })
+    </script>
 @endsection
