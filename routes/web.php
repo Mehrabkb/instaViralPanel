@@ -31,4 +31,5 @@ Route::prefix('panel')->group(function () {
     Route::post('/customer/add' , [\App\Http\Controllers\PanelController::class , 'customerAdd'])->name('panel.customer.add');
     Route::get('/report/add' , [\App\Http\Controllers\PanelController::class , 'reportAdd'])->name('panel.report.add');
     Route::get('/pages' , [\App\Http\Controllers\PanelController::class ,  'pages'])->name('panel.pages');
+    Route::post('/page/add' , [\App\Http\Controllers\PanelController::class , 'pageAdd'])->name('panel.page.add');
 });

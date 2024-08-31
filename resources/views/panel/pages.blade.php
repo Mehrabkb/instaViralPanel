@@ -36,12 +36,12 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form role="form" method="POST" action="{{ route('panel.customer.add') }}">
+                            <form role="form" method="POST" action="{{ route('panel.page.add') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">آیدی اینستاگرام</label>
-                                        <input type="text" name="insatgram-id" class="form-control" id="exampleInputEmail1" placeholder="" required>
+                                        <input type="text" name="instagram-id" class="form-control" id="exampleInputEmail1" placeholder="" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">عنوان پیج</label>
@@ -294,7 +294,9 @@
                                         <tr>
                                             <td>{{ $page->page_instagram_id }}</td>
                                             <td>{{ $page->page_title }}</td>
-                                            <td>{{ $page->image }}</td>
+                                            <td>
+                                                <img src="{{ url($page->image) }}"  width="50" >
+                                            </td>
                                             <td>{{ intval($page->follower) }}</td>
                                             <td>
                                                 <button class="btn btn-primary">ویرایش</button>

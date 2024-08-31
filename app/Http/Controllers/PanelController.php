@@ -76,4 +76,43 @@ class PanelController extends Controller
                 return view('panel.pages' , compact('pages'));
         }
     }
+    public function pageAdd(Request $request){
+        switch ($request->method()){
+            case 'POST':
+                $validate = $request->validate([
+                    'instagram-id' => 'required|max:255',
+                    'page-title' => 'required|max:255',
+                    'instagram-avatar' => 'required|image|mimes:jpeg,jpg,png|max:4000',
+                    'follower' => 'required|integer'
+                ],[
+                    'instagram-id.required' => 'آیدی اینستاگرام نمیتواند خالی باشد',
+                    'instagram-id.max' => 'آیدی اینستاگرام نمیتواند بیشتر از 255 کاراکتر باشد',
+                    'page-title.required' => 'عنوان پیج نمیتواند خالی باشد',
+                    'page-title.max' => 'عنوان پیج نمیتواند بیشتر از 255 کاراکتر باشد',
+                    'instagram-avatar.required' => 'بارگزاری عکس برای پیج الزامی میباشد',
+                    'instagram-avatar.mimes' => 'فایل باید با فرمت صحیح وارد شود',
+                    'instagram.avatar.size' => 'سایز عکس نمیتواند بیشتر از 4 مگابایت باشد',
+                    'follower.required' => 'تعداد فالور الزامی می باشد',
+                    'follower.integer' => 'تعداد فالور را با عدد وارد کنید'
+                ]);
+                if($validate){
+                    $instagram_id = htmlspecialchars($request->input('instagram-id'));
+                    $page_title = htmlspecialchars($request->input('page-title'));
+                    $instagram_avatar = htmlspecialchars($request->input('instagram-avatar'));
+                    $follower = htmlspecialchars($request->input('follower'));
+                    $imageName = time().'.'.$request['instagram-avatar']->extension();
+                    $request['instagram-avatar']->move(public_path('images') , $imageName);
+                    $pageData = [
+                        'page_instagram_id' => $instagram_id,
+                        'page_title' => $page_title,
+                        'image' => 'images/'.$imageName,
+                        'follower' => $follower
+                    ];
+                    if($this->pageRepository->addPage($pageData)){
+                        return redirect()->back()->with(['success' => 'با موفقیت ثبت شد']);
+                    }
+                    return redirect()->back()->withErrors('مشکلی پیش آمده است');
+                }
+        }
+    }
 }

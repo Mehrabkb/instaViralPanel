@@ -11,4 +11,10 @@ class PageRepository implements PagesRepositoryInterface {
         // TODO: Implement allPages() method.
         return page::all();
     }
+    public function addPage(array $pageData)
+    {
+        // TODO: Implement addPage() method.
+        return page::create($pageData);
+
+    }
 }
