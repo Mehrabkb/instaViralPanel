@@ -80,13 +80,14 @@ class PanelController extends Controller
         switch ($request->method()){
             case 'POST':
                 $validate = $request->validate([
-                    'instagram-id' => 'required|max:255',
+                    'instagram-id' => 'required|max:255|unique:pages,page_instagram_id',
                     'page-title' => 'required|max:255',
                     'instagram-avatar' => 'required|image|mimes:jpeg,jpg,png|max:4000',
                     'follower' => 'required|integer'
                 ],[
                     'instagram-id.required' => 'آیدی اینستاگرام نمیتواند خالی باشد',
                     'instagram-id.max' => 'آیدی اینستاگرام نمیتواند بیشتر از 255 کاراکتر باشد',
+                    'instagram-id.unique' => 'این پیج قبلا ثبت شده است',
                     'page-title.required' => 'عنوان پیج نمیتواند خالی باشد',
                     'page-title.max' => 'عنوان پیج نمیتواند بیشتر از 255 کاراکتر باشد',
                     'instagram-avatar.required' => 'بارگزاری عکس برای پیج الزامی میباشد',

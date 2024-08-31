@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id('page_id');
-            $table->string('page_instagram_id' , 255);
+            $table->string('page_instagram_id' , 255)->unique();
             $table->string('page_title' , 255);
             $table->string('image' , 255);
             $table->integer('follower');
