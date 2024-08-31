@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\CustomerRepositoryInterface;
+use App\Interfaces\PagesRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PanelController extends Controller
 {
     protected $customerRepository;
-    public function __construct(CustomerRepositoryInterface $customerRepository)
+    protected $pageRepository;
+    public function __construct(CustomerRepositoryInterface $customerRepository , PagesRepositoryInterface $pageRepository)
     {
         $this->middleware('UserLoginMiddleware');
         $this->customerRepository = $customerRepository;
+        $this->pageRepository = $pageRepository;
     }
     public function home(Request $request){
         switch ($request->method()){
@@ -64,6 +67,13 @@ class PanelController extends Controller
             case 'GET':
                 $customers = $this->customerRepository->allCustomers();
                 return view('panel.report.add' , compact('customers'));
+        }
+    }
+    public function pages(Request $request){
+        switch ($request->method()){
+            case 'GET':
+                $pages = $this->pageRepository->allPages();
+                return view('panel.pages' , compact('pages'));
         }
     }
 }

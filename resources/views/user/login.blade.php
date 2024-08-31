@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +33,7 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">اطلاعات کاربری</p>
 
-            <form action="{{ route('user.login') }}" method="post">
+            <form action="{{ route('user.login') }}" style="direction: ltr;" method="post">
                 @csrf
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="نام کاربری" name="username" autocomplete="off" autofocus>

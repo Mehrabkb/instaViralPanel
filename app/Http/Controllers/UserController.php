@@ -21,18 +21,29 @@ class UserController extends Controller
                 }
                 return view('user.login');
             case 'POST':
-                $username = htmlspecialchars($request->get('username'));
-                $password = htmlspecialchars($request->get('password'));
-                if($this->userRepository->checkUserExist($username)){
-                    if($this->userRepository->checkUserPassword($username , $password)){
-                        $user = $this->userRepository->getUserByUsername($username);
-                        Auth::login($user);
-                        return redirect()->route('panel.home');
+                $validate = $request->validate([
+                    'username' => 'required',
+                    'password' => 'required',
+                    'g-recaptcha-response' => 'required'
+                ],[
+                    'username.required' => 'نام کاربری نمیتواند خالی باشد',
+                    'password.required' => 'رمز عبور نمیتواند خالی باشد',
+                    'g-recaptcha-response.required' => 'لطفا فیلد من ربات نیستم را تکمیل کنید'
+                ]);
+                if($validate){
+                    $username = htmlspecialchars($request->get('username'));
+                    $password = htmlspecialchars($request->get('password'));
+                    if($this->userRepository->checkUserExist($username)){
+                        if($this->userRepository->checkUserPassword($username , $password)){
+                            $user = $this->userRepository->getUserByUsername($username);
+                            Auth::login($user);
+                            return redirect()->route('panel.home');
+                        }else{
+                            return redirect()->back()->withErrors('رمز عبور را صحیح وارد کنید');
+                        }
                     }else{
-                        return redirect()->back()->withErrors('رمز عبور را صحیح وارد کنید');
+                        return redirect()->back()->withErrors('کاربری با این مشخصات یافت نشد');
                     }
-                }else{
-                    return redirect()->back()->withErrors('کاربری با این مشخصات یافت نشد');
                 }
         }
     }

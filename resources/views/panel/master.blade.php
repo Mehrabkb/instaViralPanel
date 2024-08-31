@@ -214,6 +214,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('panel.pages') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                پیج ها
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('user.logout') }}" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>
